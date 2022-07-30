@@ -69,6 +69,7 @@ RUN   dnf install -y \
 
 ###added
 RUN dnf -y update \
+    dnf makecache --refresh \
     dnf groupinstall "Development Tools"
 
 # Update and add pkgs for CentOS
