@@ -1,6 +1,9 @@
 ###Source: https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.5.0/ubi8/base/Dockerfile
 FROM registry.access.redhat.com/ubi8/ubi:latest as base
 
+###added
+USER root
+
 ###FROM base as base-amd64
 
 ENV NVARCH x86_64
@@ -57,3 +60,6 @@ COPY NGC-DL-CONTAINER-LICENSE /
 # nvidia-container-runtime
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+
+###added
+USER 1001
