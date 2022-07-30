@@ -51,7 +51,7 @@ RUN mkdir -p /usr/local/src/binutils/build ${BINUTILS_DIR} \
 COPY .condarc /opt/conda/.condarc
 
 # Update and add pkgs for gpuci builds
-RUN yum update -y && install -y epel-release \
+RUN yum update -y && yum install -y epel-release \
     && yum install -y --setopt=install_weak_deps=False \
       chrpath \
       clang \
