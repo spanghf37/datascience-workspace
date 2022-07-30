@@ -1,39 +1,3 @@
 schemaVersion: 2.1.0
 metadata:
   name: workspace-vscode-datascience
-components:
-  - name: runtime
-    container:
-      image: docker.io/rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9
-#      image: quay.io/devfile/universal-developer-image:ubi8-latest
-      volumeMounts:
-        - name: venv
-          path: /home/user/.venv
-      memoryLimit: 8Gi
-      mountSources: true
-      endpoints:
-        - name: streamlit-8501
-          targetPort: 8501
-        - name: tensorboard-6006
-          targetPort: 6006
-  - name: venv
-    volume:
-      size: 1G
-
-commands:
-  - id: run-python-application
-    exec:
-      label: "Run Python (app.py) application"
-      component: runtime
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "python3 app.py"
-      group:
-        kind: run
-  - id: run-streamlit-application
-    exec:
-      label: "Run Streamlit (streamlit.py) application"
-      component: runtime
-      workingDir: ${PROJECT_SOURCE}
-      commandLine: "streamlit streamlit.py"
-      group:
-        kind: run
