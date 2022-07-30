@@ -68,7 +68,8 @@ RUN   dnf install -y \
 ###    fi
 
 ###added
-RUN dnf groupinstall "Development Tools"
+RUN dnf -y update \
+    dnf groupinstall "Development Tools"
 
 # Update and add pkgs for CentOS
 ###RUN if [[ "${LINUX_VER:0:6}" == "centos" || "${LINUX_VER:0:5}" == "rocky" ]] ; then \
