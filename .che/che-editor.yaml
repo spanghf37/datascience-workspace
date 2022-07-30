@@ -4,3 +4,7 @@ override:
   containers:
     - name: che-code-injector
       image: 'image-registry.openshift-image-registry.svc:5000/developer-che/che-incubator-che-code@sha256:1209ac5d765aeff55234bbf952f96a1f72fffb9f176e6c1727b193ed1735b402'
+      memoryLimit: 512Mi
+      memoryRequest: 32Mi
+      cpuLimit: 500m
+      cpuRequest: 30m
