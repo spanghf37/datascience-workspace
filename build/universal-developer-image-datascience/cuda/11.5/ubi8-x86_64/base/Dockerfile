@@ -1,7 +1,5 @@
-FROM quay.io/devfile/universal-developer-image:ubi8-latest
-
 ###Source: https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.5.0/ubi8/base/Dockerfile
-###FROM registry.access.redhat.com/ubi8/ubi:latest as base
+FROM registry.access.redhat.com/ubi8/ubi:latest as base
 
 ###FROM base as base-amd64
 
