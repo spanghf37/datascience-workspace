@@ -67,11 +67,6 @@ RUN   dnf install -y \
       && dnf config-manager --set-disabled cuda ;
 ###    fi
 
-###added
-RUN dnf -y update \
-    dnf makecache --refresh \
-    dnf groupinstall "Development Tools"
-
 # Update and add pkgs for CentOS
 ###RUN if [[ "${LINUX_VER:0:6}" == "centos" || "${LINUX_VER:0:5}" == "rocky" ]] ; then \
 RUN   yum -y update \
@@ -84,8 +79,8 @@ RUN   yum -y update \
         curl \
         git \
         make \
-        numactl-devel \
-        numactl-libs \
+###        numactl-devel \
+###        numactl-libs \
         patch \
         unzip \
         wget \
