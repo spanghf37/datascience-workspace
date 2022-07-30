@@ -29,7 +29,8 @@ RUN /checode-linux-libc/bin/che-code --extensions-dir /checode-extensions \
       --install-extension humao.rest-client \
       --install-extension redhat.vscode-openshift-connector \
       --install-extension redhat.vscode-tekton-pipelines \
-      --install-extension redhat.vscode-xml
+      --install-extension redhat.vscode-xml \
+      --install-extension actboy168.tasks
 
 COPY build/che-code/entrypoint-init-container.sh /
 
