@@ -4,3 +4,5 @@ override:
   containers:
     - name: che-code-injector
       image: 'image-registry.openshift-image-registry.svc:5000/developer-che/che-incubator-che-code@sha256:1209ac5d765aeff55234bbf952f96a1f72fffb9f176e6c1727b193ed1735b402'
+    - name: che-code-runtime-description
+      image: 'quay.io/devfile/universal-developer-image:ubi8-latest'
