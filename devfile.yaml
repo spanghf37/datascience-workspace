@@ -6,19 +6,7 @@ components:
   - name: runtime
     container:
 #      image: docker.io/rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
-      volumeMounts:
-        - name: venv
-          path: /home/user/.venv
-      memoryLimit: 8Gi
-      mountSources: true
-  - name: venv
-    volume:
-      size: 1G
-  - name: runtime-rapidsai
-    container:
-      image: docker.io/rapidsai/rapidsai-dev:22.06-cuda11.5-devel-ubuntu20.04-py3.9
-#      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      image: image-registry.openshift-image-registry.svc:5000/developer-che/cuda@sha256:b22027409ad2f1a1cb4326edaa2f8e5768161d8cc4bce2fc7f739960d66af941
       volumeMounts:
         - name: venv
           path: /home/user/.venv
@@ -28,8 +16,8 @@ components:
         - name: streamlit-8501
           targetPort: 8501
         - name: tensorboard-6006
-          targetPort: 6006
-      
+          targetPort: 6006      
+
 commands:
   - id: run-python-application
     exec:
