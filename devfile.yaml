@@ -10,7 +10,7 @@ components:
       volumeMounts:
         - name: venv
           path: /home/user/.venv
-      memoryLimit: 8Gi
+      memoryLimit: 4Gi
       mountSources: true
       endpoints:
         - name: streamlit-8501
