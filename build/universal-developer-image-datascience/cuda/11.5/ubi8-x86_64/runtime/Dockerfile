@@ -2,6 +2,9 @@
 ###ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:11.5.0-base-ubi8 as base
 
+###added
+USER root
+
 ENV NV_CUDA_LIB_VERSION 11.5.0-1
 
 ###FROM base as base-amd64
@@ -52,3 +55,6 @@ RUN yum install -y \
     ${NV_LIBNCCL_PACKAGE} \
     && yum clean all \
     && rm -rf /var/cache/yum/*
+
+###added
+USER 1001
