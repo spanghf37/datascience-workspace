@@ -1,10 +1,12 @@
-id: che-incubator/che-code/insiders
+#id: che-incubator/che-code/insiders
+#reference: https://raw.githubusercontent.com/eclipse-che/che-plugin-registry/main/che-editors.yaml
+#override:
+#  containers:
+#    - name: che-code-injector
+#      image: 'image-registry.openshift-image-registry.svc:5000/developer-che/che-incubator-che-code@sha256:cb2f3b51bf7417046f6bb2e50301f60c07535eabbfc3ace3d2d6795d3a3682c1'
+#      memoryLimit: 512Mi
+#      memoryRequest: 32Mi
+#      cpuLimit: 500m
+#      cpuRequest: 30m
+id: che-incubator/che-pycharm/next
 reference: https://raw.githubusercontent.com/eclipse-che/che-plugin-registry/main/che-editors.yaml
-override:
-  containers:
-    - name: che-code-injector
-      image: 'image-registry.openshift-image-registry.svc:5000/developer-che/che-incubator-che-code@sha256:cb2f3b51bf7417046f6bb2e50301f60c07535eabbfc3ace3d2d6795d3a3682c1'
-      memoryLimit: 512Mi
-      memoryRequest: 32Mi
-      cpuLimit: 500m
-      cpuRequest: 30m
