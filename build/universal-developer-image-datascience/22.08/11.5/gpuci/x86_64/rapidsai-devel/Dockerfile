@@ -8,8 +8,8 @@ FROM ${FROM_IMAGE}:${CUDA_VER}-devel-${LINUX_VER}
 USER root
 
 # Required arguments
-ARG RAPIDS_VER=22.06
-ARG PYTHON_VER=3.0
+ARG RAPIDS_VER=22.08
+ARG PYTHON_VER=3.9
 
 # Optional arguments
 ARG BINUTILS_DIR=/usr/local/binutils
