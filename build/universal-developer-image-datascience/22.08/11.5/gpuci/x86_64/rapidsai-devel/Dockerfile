@@ -51,7 +51,6 @@ RUN mkdir -p /usr/local/src/binutils/build ${BINUTILS_DIR} \
 COPY .condarc /opt/conda/.condarc
 
 # Update and add pkgs for gpuci builds
-###RUN yum install -y epel-release \
 RUN dnf update -y && dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm \
     && yum install -y --setopt=install_weak_deps=False \
       chrpath \
