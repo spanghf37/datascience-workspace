@@ -1,0 +1,444 @@
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  labels:
+    appName: universal-developer-image-chain
+    appTypes: universal-developer-image-chain
+  name: universal-developer-image
+spec:
+  lookupPolicy:
+    local: true
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: universal-developer-image-chain
+    appName1: universal-developer-image-base
+    appTypes: universal-developer-image-chain
+  name: universal-developer-image-base
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: universal-developer-image:almalinux8-base
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: base/ubi8
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/developer-images.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+      from:
+        kind: DockerImage
+        name: docker.io/almalinux:8
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: universal-developer-image-chain
+    appName1: universal-developer-image
+    appTypes: universal-developer-image-chain
+  name: universal-developer-image
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: universal-developer-image:almalinux8
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: universal/ubi8
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/developer-images.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: universal-developer-image:almalinux8-base
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange  
+
+
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appTypes: rapidsai-chain
+  name: rapidsai
+spec:
+  lookupPolicy:
+    local: true
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-cuda-base-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-cuda-base-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-cuda-base-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/cuda/x86_64/base
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: universal-developer-image:almalinux8
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-cuda-runtime-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-cuda-runtime-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-cuda-runtime-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/cuda/x86_64/runtime
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rapidsai:22.08-cuda11.5-cuda-base-almalinux8-py3.9
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-cuda-devel-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-cuda-devel-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-cuda-devel-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/cuda/x86_64/devel
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rapidsai:22.08-cuda11.5-cuda-runtime-almalinux8-py3.9
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-cuda-devel-cdn8-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-cuda-devel-cudnn8-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-cuda-devel-cudnn8-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/cuda/x86_64/devel-cudnn8
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rapidsai:22.08-cuda11.5-cuda-devel-almalinux8-py3.9
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-gpuci-mf-ca-dl-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-gpuci-miniforge-cuda-devel-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-gpuci-miniforge-cuda-devel-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/gpuci/x86_64/miniforge-cuda-devel
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rapidsai:22.08-cuda11.5-cuda-devel-cudnn8-almalinux8-py3.9
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-gpuci-rai-dl-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-gpuci-rapidsai-devel-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-gpuci-rapidsai-devel-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/gpuci/x86_64/rapidsai-devel
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rapidsai:22.08-cuda11.5-gpuci-miniforge-cuda-devel-almalinux8-py3.9
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-core-devel-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-core-devel-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-core-devel-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/rapidsai/x86_64/core-devel
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rapidsai:22.08-cuda11.5-gpuci-rapidsai-devel-almalinux8-py3.9
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    appName: rapidsai-chain
+    appName1: rapidsai-chain-22.08-cuda11.5-devel-almalinux8-py3.9
+    appTypes: rapidsai-chain
+  name: 22.08-cuda11.5-devel-almalinux8-py3.9
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rapidsai:22.08-cuda11.5-devel-almalinux8-py3.9
+  postCommit: {}
+  resources:
+    limits:
+      cpu: "2"
+      memory: 4Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  runPolicy: Serial
+  source:
+    contextDir: build/universal-developer-image-datascience/22.08/11.5/rapidsai/x86_64/devel
+    git:
+      ref: main
+      uri: https://github.com/spanghf37/workspace-vscode-datascience.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rapidsai:22.08-cuda11.5-core-devel-almalinux8-py3.9
+      noCache: true
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - type: ConfigChange
+  - type: ImageChange
