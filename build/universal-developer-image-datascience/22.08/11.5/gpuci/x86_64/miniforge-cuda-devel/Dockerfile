@@ -79,8 +79,8 @@ RUN   yum -y update \
         curl \
         git \
         make \
-###        numactl-devel \
-###        numactl-libs \
+        numactl-devel \
+        numactl-libs \
         patch \
         unzip \
         wget \
