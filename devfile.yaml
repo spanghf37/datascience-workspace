@@ -16,7 +16,11 @@ components:
         - name: streamlit-8501
           targetPort: 8501
         - name: tensorboard-6006
-          targetPort: 6006      
+          targetPort: 6006
+        - name: node-red-1880
+          targetPort: 1880
+        - name: n8n-5678
+          targetPort: 5678
   - name: venv
     volume:
       size: 1G
@@ -36,5 +40,21 @@ commands:
       component: runtime
       workingDir: ${PROJECT_SOURCE}
       commandLine: "streamlit run streamlit.py"
+      group:
+        kind: run
+  - id: run-node-red-workflow-application
+    exec:
+      label: "Run node-red workflow on port 1880"
+      component: runtime
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "node-red"
+      group:
+        kind: run
+  - id: run-n8n-workflow-application
+    exec:
+      label: "Run n8n workflow on port 5678"
+      component: runtime
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "node-red"
       group:
         kind: run
