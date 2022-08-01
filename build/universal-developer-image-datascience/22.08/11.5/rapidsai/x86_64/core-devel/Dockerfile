@@ -101,7 +101,7 @@ WORKDIR ${RAPIDS_DIR}/notebooks
 EXPOSE 8888
 EXPOSE 8787
 EXPOSE 8786
-###COPY tag-repo.sh /usr/local/bin/tag-repo
+COPY tag-repo.sh /usr/local/bin/tag-repo
 
 RUN cd ${RAPIDS_DIR} \
   && source activate rapids \
