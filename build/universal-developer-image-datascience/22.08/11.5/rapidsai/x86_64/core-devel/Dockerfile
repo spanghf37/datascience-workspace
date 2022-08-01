@@ -12,7 +12,7 @@
 ARG CUDA_VER=11.5
 ###ARG LINUX_VER=centos7
 ARG PYTHON_VER=3.9
-ARG RAPIDS_VER=22.08
+ARG RAPIDS_VER=22.06
 ARG FROM_IMAGE=gpuci/rapidsai
 
 FROM ${FROM_IMAGE}:${RAPIDS_VER}-cuda${CUDA_VER}-devel-${LINUX_VER}-py${PYTHON_VER}
@@ -102,7 +102,7 @@ EXPOSE 8888
 EXPOSE 8787
 EXPOSE 8786
 COPY tag-repo.sh /usr/local/bin/tag-repo
-RUN chmod +x /usr/local/bin/tag-repo/tag-repo.sh
+RUN chmod +x /usr/local/bin/tag-repo/tag-repo
 
 RUN cd ${RAPIDS_DIR} \
   && source activate rapids \
