@@ -8,7 +8,7 @@ FROM ${FROM_IMAGE}:${CUDA_VER}-devel-${LINUX_VER}
 USER root
 
 # Required arguments
-ARG RAPIDS_VER=22.08
+ARG RAPIDS_VER=22.06
 ARG PYTHON_VER=3.9
 
 # Optional arguments
