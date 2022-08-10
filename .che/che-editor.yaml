@@ -3,8 +3,6 @@ reference: https://raw.githubusercontent.com/eclipse-che/che-plugin-registry/mai
 override:
   containers:
     - name: che-code-injector
-      image: 'quay.io/che-incubator/che-code:insiders'
-      #image: 'image-registry.openshift-image-registry.svc:5000/developer-che/che-incubator-che-code@sha256:cb2f3b51bf7417046f6bb2e50301f60c07535eabbfc3ace3d2d6795d3a3682c1'
       memoryLimit: 512Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
