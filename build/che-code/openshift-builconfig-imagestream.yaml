@@ -9,8 +9,8 @@ spec:
   source:
     type: Git
     git:
-      uri: 'https://github.com/spanghf37/workspace-vscode-datascience.git'
-      ref: main
+      uri: 'https://github.com/spanghf37/workspace-generic.git'
+      ref: che-code
   strategy:
     type: Docker
     dockerStrategy:
