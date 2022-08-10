@@ -3,6 +3,7 @@ reference: https://raw.githubusercontent.com/eclipse-che/che-plugin-registry/mai
 override:
   containers:
     - name: che-code-injector
+      image: 'quay.io/rhcsdel/che-code:insiders-custom'
       memoryLimit: 512Mi
       memoryRequest: 32Mi
       cpuLimit: 500m
