@@ -15,7 +15,7 @@ components:
       endpoints:
         - name: streamlit-8501
           targetPort: 8501
-        - name: tensorboard-6006
+        - name: tensorboard6006
           targetPort: 6006
         - name: node-red-1880
           targetPort: 1880
